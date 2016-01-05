@@ -5,11 +5,10 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: [
-        './src/entry.js',
+        './src/app.js',
         'webpack-dev-server/client?http://localhost:8080',
         'webpack/hot/dev-server'
     ],
-
     devServer: {
         hot: true,
         inline: true
@@ -33,16 +32,18 @@ module.exports = {
                 loaders: ['react-hot', 'jsx', 'babel'],
                 exclude: /node_modules/
             },
-            {
+            /*{
                 test: /\.less$/,
                 loader: ExtractTextPlugin.extract('css!less')
-            }
+            }*/
+            { test: /\.less$/, loader: "style!css!less" }
         ]
     },
     plugins: [
-        new ExtractTextPlugin('public/main.css', {
+        /*new ExtractTextPlugin('public/main.css', {
             allChunks: true
-        }),
+        }),*/
+        //new ExtractTextPlugin({ allChunks : true }),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
